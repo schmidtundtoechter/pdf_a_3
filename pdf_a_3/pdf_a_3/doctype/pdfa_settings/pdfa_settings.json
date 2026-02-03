@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "creation": "2025-02-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "section_doctypes",
+  "enabled_for",
+  "section_archive",
+  "archive_email",
+  "archive_email_note",
+  "section_ghostscript",
+  "ghostscript_status",
+  "check_ghostscript",
+  "ghostscript_info"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "section_doctypes",
+   "fieldtype": "Section Break",
+   "label": "Document Types"
+  },
+  {
+   "fieldname": "enabled_for",
+   "fieldtype": "Table",
+   "label": "Generate PDF/A-3 for",
+   "options": "PDFA DocType Row"
+  },
+  {
+   "fieldname": "section_archive",
+   "fieldtype": "Section Break",
+   "label": "Email Archiving"
+  },
+  {
+   "description": "If set, PDF/A-3 files generated on Submit will be emailed to this address for archiving.",
+   "fieldname": "archive_email",
+   "fieldtype": "Data",
+   "label": "Archive Email Address",
+   "options": "Email"
+  },
+  {
+   "fieldname": "archive_email_note",
+   "fieldtype": "HTML",
+   "label": "Archive Email Note",
+   "options": "<p class=\"text-muted\"><strong>Note:</strong> Please only use a sender address stored under <b>Email Account</b> to activate this function. This field is optional.</p>"
+  },
+  {
+   "fieldname": "section_ghostscript",
+   "fieldtype": "Section Break",
+   "label": "Ghostscript (PDF Driver)"
+  },
+  {
+   "fieldname": "ghostscript_status",
+   "fieldtype": "HTML",
+   "label": "Ghostscript Status"
+  },
+  {
+   "fieldname": "check_ghostscript",
+   "fieldtype": "Button",
+   "label": "Check Ghostscript Installation"
+  },
+  {
+   "fieldname": "ghostscript_info",
+   "fieldtype": "HTML",
+   "label": "Ghostscript Info",
+   "options": "<h4>Installation Instructions</h4><p>Ghostscript is required to convert PDFs to PDF/A-3 format.</p><p><b>Ubuntu / Debian:</b></p><pre>sudo apt-get install ghostscript</pre><p><b>CentOS / RHEL:</b></p><pre>sudo yum install ghostscript</pre><p><b>macOS (Homebrew):</b></p><pre>brew install ghostscript</pre><p>After installation, click the <b>Check Ghostscript Installation</b> button above to verify.</p>"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "issingle": 1,
+ "links": [],
+ "modified": "2025-02-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pdf A 3",
+ "name": "PDFA Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

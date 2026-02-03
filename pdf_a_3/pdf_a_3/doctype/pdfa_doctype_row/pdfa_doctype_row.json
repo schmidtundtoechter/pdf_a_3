@@ -1,0 +1,56 @@
+{
+ "actions": [],
+ "creation": "2025-02-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "document_type",
+  "print_format",
+  "letter_head"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "document_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Document Type",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "fieldname": "print_format",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Print Format",
+   "options": "Print Format"
+  },
+  {
+   "fieldname": "letter_head",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Letter Head",
+   "options": "Letter Head"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-02-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Pdf A 3",
+ "name": "PDFA DocType Row",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,7 +1,7 @@
 app_name = "pdf_a_3"
-app_title = "Pdf A 3"
+app_title = "PDF/A-3"
 app_publisher = "ahmad900mohammad@gmail.com"
-app_description = "pdf a3"
+app_description = "Generate PDF/A-3 files on Submit and forward to archive email"
 app_email = "ahmad900mohammad@gmail.com"
 app_license = "mit"
 
@@ -136,14 +136,14 @@ app_license = "mit"
 # Document Events
 # ---------------
 # Hook on document methods and events
+# Uses "*" to listen on all doctypes; the handler checks PDFA Settings
+# to determine if the doctype is enabled for PDF/A-3 generation.
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"*": {
+		"on_submit": "pdf_a_3.utils.attach_pdf.on_submit",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
