@@ -1,9 +1,10 @@
 ## Pdf A 3
 
 Written for: ERPNext 15.
+
 Compatible with EU Invoice (The app to generate and import invoices as E-Rechnung and X-Rechnung.)
 https://github.com/alyf-de/eu_einvoice
-This app also generates at least one sales invoice as a PDF/a-3.
+This app also generates at least one sales invoice as a PDF/A-3.
 Our app can function with or without this app.
 
 
