@@ -29,6 +29,6 @@ Check Ghostscript button: Manual check
 Installation Instructions: How to install Ghostscript
 
 
-#### License
+## License
 
 mit
