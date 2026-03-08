@@ -1,0 +1,49 @@
+%!
+% Custom PDFA_def.ps for PDF/A-3B compliance.
+% Used by the pdf_a_3 Frappe app.
+% Requires srgb.icc in Ghostscript's current working directory.
+
+[ /Title (Document)
+  /DOCINFO pdfmark
+
+/ICCProfile (srgb.icc) def
+
+[/_objdef {icc_PDFA} /type /stream /OBJ pdfmark
+[{icc_PDFA} << /N 3 >> /PUT pdfmark
+[
+{icc_PDFA}
+{ICCProfile (r) file} stopped
+{
+  (\n\tFailed to open srgb.icc. PDF/A-3 processing aborted.\n\n) print
+  cleartomark
+}
+{
+  /PUT pdfmark
+
+  [/_objdef {OutputIntent_PDFA} /type /dict /OBJ pdfmark
+  [{OutputIntent_PDFA} <<
+    /Type /OutputIntent
+    /S /GTS_PDFA1
+    /DestOutputProfile {icc_PDFA}
+    /OutputConditionIdentifier (sRGB)
+  >> /PUT pdfmark
+  [{Catalog} <</OutputIntents [ {OutputIntent_PDFA} ]>> /PUT pdfmark
+
+  % Embed XMP metadata declaring PDF/A-3B conformance
+  [/_objdef {pdfa_xmp} /type /stream /OBJ pdfmark
+  [{pdfa_xmp} << /Type /Metadata /Subtype /XML >> /PUT pdfmark
+  [{pdfa_xmp}
+(<?xpacket begin="\xef\xbb\xbf" id="W5M0MpCehiHzreSzNTczkc9d"?>
+<x:xmpmeta xmlns:x="adobe:ns:meta/">
+  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <rdf:Description rdf:about=""
+        xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/">
+      <pdfaid:part>3</pdfaid:part>
+      <pdfaid:conformance>B</pdfaid:conformance>
+    </rdf:Description>
+  </rdf:RDF>
+</x:xmpmeta>
+<?xpacket end="w"?>)
+  /PUT pdfmark
+  [{Catalog} <</Metadata {pdfa_xmp}>> /PUT pdfmark
+} ifelse

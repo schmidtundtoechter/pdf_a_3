@@ -62,9 +62,8 @@ def convert_pdf_to_pdfa(pdf_data: bytes) -> bytes:
 	Raises:
 		RuntimeError: If Ghostscript conversion fails.
 	"""
-	cwd = None
-	if not os.path.isfile("srgb.icc"):
-		cwd = _get_icc_profile_path()
+	icc_path = _get_icc_profile_path()
+	pdfa_def_ps = os.path.join(os.path.dirname(__file__), "PDFA_def.ps")
 
 	with subprocess.Popen(
 		[
@@ -79,10 +78,10 @@ def convert_pdf_to_pdfa(pdf_data: bytes) -> bytes:
 			"--permit-file-read=srgb.icc",
 			"-sDEVICE=pdfwrite",
 			"-sOutputFile=-",
-			"PDFA_def.ps",
+			pdfa_def_ps,
 			"-",
 		],
-		cwd=cwd,
+		cwd=icc_path,
 		stdin=subprocess.PIPE,
 		stdout=subprocess.PIPE,
 		stderr=subprocess.PIPE,
