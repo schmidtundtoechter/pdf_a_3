@@ -19,7 +19,7 @@ def on_submit(doc, event=None):
 	if not settings.enabled:
 		return
 
-	enabled_row = _get_enabled_row(settings, doc.doctype)
+	enabled_row = _get_enabled_row(settings, doc.doctype, doc)
 	if not enabled_row:
 		return
 
@@ -74,9 +74,42 @@ def _process_pdfa(doctype, docname, print_format=None, letter_head=None):
 		)
 
 
-def _get_enabled_row(settings, doctype):
-	"""Return the matching enabled row for the given DocType, or None."""
-	for row in settings.enabled_for:
-		if row.document_type == doctype and row.enabled:
+def _get_enabled_row(settings, doctype, doc=None):
+	"""Return the matching enabled row for the given DocType, or None.
+
+	If multiple rows exist for the same DocType, trigger_field/trigger_operator/trigger_value
+	are evaluated against the document to select the correct print format.
+	A row with a blank trigger_field acts as the default fallback.
+	"""
+	matching_rows = [
+		row for row in settings.enabled_for
+		if row.document_type == doctype and row.enabled
+	]
+
+	if not matching_rows:
+		return None
+
+	if len(matching_rows) == 1:
+		return matching_rows[0]
+
+	default_row = None
+	for row in matching_rows:
+		if not row.trigger_field:
+			if default_row is None:
+				default_row = row
+			continue
+
+		if doc is None:
+			continue
+
+		field_value = doc.get(row.trigger_field)
+		operator = row.trigger_operator or "="
+
+		if operator == "=" and str(field_value) == str(row.trigger_value or ""):
 			return row
-	return None
+		elif operator == "Exists" and field_value:
+			return row
+		elif operator == "Not Exists" and not field_value:
+			return row
+
+	return default_row

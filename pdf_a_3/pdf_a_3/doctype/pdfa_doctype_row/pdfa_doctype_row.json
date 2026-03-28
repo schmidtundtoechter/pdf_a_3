@@ -8,7 +8,10 @@
   "enabled",
   "document_type",
   "print_format",
-  "letter_head"
+  "letter_head",
+  "trigger_field",
+  "trigger_operator",
+  "trigger_value"
  ],
  "fields": [
   {
@@ -39,6 +42,23 @@
    "in_list_view": 1,
    "label": "Letter Head",
    "options": "Letter Head"
+  },
+  {
+   "fieldname": "trigger_field",
+   "fieldtype": "Data",
+   "label": "Trigger Field"
+  },
+  {
+   "fieldname": "trigger_operator",
+   "fieldtype": "Select",
+   "label": "Trigger Operator",
+   "options": "\n=\nExists\nNot Exists"
+  },
+  {
+   "fieldname": "trigger_value",
+   "fieldtype": "Data",
+   "label": "Trigger Value",
+   "depends_on": "eval:doc.trigger_operator == '='"
   }
  ],
  "index_web_pages_for_search": 0,
