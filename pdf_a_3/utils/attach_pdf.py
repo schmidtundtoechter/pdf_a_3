@@ -107,6 +107,8 @@ def _get_enabled_row(settings, doctype, doc=None):
 
 		if operator == "=" and str(field_value) == str(row.trigger_value or ""):
 			return row
+		elif operator == "= Field" and str(field_value or "") == str(doc.get(row.trigger_value) or ""):
+			return row
 		elif operator == "Exists" and field_value:
 			return row
 		elif operator == "Not Exists" and not field_value:

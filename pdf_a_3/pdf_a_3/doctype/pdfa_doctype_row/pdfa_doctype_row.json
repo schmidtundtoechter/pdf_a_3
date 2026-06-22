@@ -52,13 +52,13 @@
    "fieldname": "trigger_operator",
    "fieldtype": "Select",
    "label": "Trigger Operator",
-   "options": "\n=\nExists\nNot Exists"
+   "options": "\n=\nExists\nNot Exists\n= Field"
   },
   {
    "fieldname": "trigger_value",
    "fieldtype": "Data",
-   "label": "Trigger Value",
-   "depends_on": "eval:doc.trigger_operator == '='"
+   "label": "Trigger Value / Field Name",
+   "depends_on": "eval:doc.trigger_operator == '=' || doc.trigger_operator == '= Field'"
   }
  ],
  "index_web_pages_for_search": 0,
