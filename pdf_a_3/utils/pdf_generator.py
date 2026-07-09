@@ -37,7 +37,7 @@ def generate_pdfa(doc, print_format=None, letter_head=None) -> bytes:
 def _get_pdf_data(doctype, name, print_format, letter_head) -> bytes:
 	"""Generate standard PDF from a document."""
 	html = frappe.get_print(doctype, name, print_format, letterhead=letter_head)
-	return frappe.utils.pdf.get_pdf(html)
+	return frappe.utils.pdf.get_pdf(html, options={"load-error-handling": "ignore"})
 
 
 def attach_pdfa(doc, pdfa_data: bytes) -> "frappe.core.doctype.file.file.File":

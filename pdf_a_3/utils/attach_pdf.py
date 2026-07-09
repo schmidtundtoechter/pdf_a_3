@@ -34,12 +34,7 @@ def on_submit(doc, event=None):
 		)
 		return
 
-	frappe.enqueue(
-		method=_process_pdfa,
-		queue="default",
-		timeout=60,
-		now=bool(frappe.flags.in_test or frappe.conf.developer_mode),
-		enqueue_after_commit=True,
+	_process_pdfa(
 		doctype=doc.doctype,
 		docname=doc.name,
 		print_format=enabled_row.print_format,
