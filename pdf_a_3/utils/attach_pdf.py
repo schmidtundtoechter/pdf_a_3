@@ -55,11 +55,6 @@ def _process_pdfa(doctype, docname, print_format=None, letter_head=None):
 		doc = frappe.get_doc(doctype, docname)
 		pdfa_data = generate_pdfa(doc, print_format=print_format, letter_head=letter_head)
 		file_doc = attach_pdfa(doc, pdfa_data)
-		forward_pdf_to_archive(doc, file_doc)
-
-		frappe.logger("pdf_a_3").info(
-			f"PDF/A-3 generated and attached for {doctype} {docname}"
-		)
 	except Exception:
 		frappe.log_error(
 			title=_("PDF/A-3 Generation Failed"),
@@ -67,6 +62,22 @@ def _process_pdfa(doctype, docname, print_format=None, letter_head=None):
 			reference_doctype=doctype,
 			reference_name=docname,
 		)
+		return
+
+	# Archive email is independent — a failure here must not swallow the attachment success
+	try:
+		forward_pdf_to_archive(doc, file_doc)
+	except Exception:
+		frappe.log_error(
+			title=_("PDF/A-3 Archive Email Failed"),
+			message=frappe.get_traceback(),
+			reference_doctype=doctype,
+			reference_name=docname,
+		)
+
+	frappe.logger("pdf_a_3").info(
+		f"PDF/A-3 generated and attached for {doctype} {docname}"
+	)
 
 
 def _get_enabled_row(settings, doctype, doc=None):
